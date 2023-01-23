@@ -3,6 +3,8 @@ package com.leo.catalogmanga.Data;
 import static java.lang.System.load;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,30 +14,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.leo.catalogmanga.Activities.DetailsActivity;
 import com.leo.catalogmanga.Model.Manga;
 import com.leo.catalogmanga.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MangaRecyclerViewAdapter extends RecyclerView.Adapter<MangaRecyclerViewAdapter.ViewHolder>
-{
+public class MangaRecyclerViewAdapter extends RecyclerView.Adapter<MangaRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<Manga> mangaList;
 
     @NonNull
     @Override
-    public MangaRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-    {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.manga,parent,false);
-        return new ViewHolder(view,context);
+    public MangaRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.manga, parent, false);
+        return new ViewHolder(view, context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MangaRecyclerViewAdapter.ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull MangaRecyclerViewAdapter.ViewHolder holder, int position) {
         Manga manga = mangaList.get(position);
-        String mangaCover=manga.getMangaCover();
+        String mangaCover = manga.getMangaCover();
         holder.mangaTitle.setText(manga.getMangaTitle());
         holder.mangaScrapeDate.setText(manga.getScrapeDate());
         holder.type.setText(manga.getType());
@@ -51,21 +51,33 @@ public class MangaRecyclerViewAdapter extends RecyclerView.Adapter<MangaRecycler
         return mangaList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mangaTitle;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView mangaTitle, mangaScrapeDate, type;
         ImageView mangaCover;
-        TextView mangaScrapeDate;
-        TextView type;
 
-        public ViewHolder(@NonNull View itemView, Context context)
-        {
+        public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
-            context=context;
-            mangaTitle=itemView.findViewById(R.id.mangaTitleID);
-            mangaCover=itemView.findViewById(R.id.mangaImageID);
-            mangaScrapeDate=itemView.findViewById(R.id.mangaScrapeDateID);
-            type=itemView.findViewById(R.id.mangaCatID);
+            context = ctx;
+            mangaTitle = itemView.findViewById(R.id.MangaTitleID);
+            mangaCover = itemView.findViewById(R.id.MangaCoverID);
+            mangaScrapeDate = itemView.findViewById(R.id.MangaScrapeDateID);
+            type = itemView.findViewById(R.id.MangaTypeID);
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Manga manga = mangaList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, DetailsActivity.class);
+                    intent.putExtra("manga", manga);
+                    ctx.startActivity(intent);
+                }
+            });
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }
 }
+

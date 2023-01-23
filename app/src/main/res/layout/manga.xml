@@ -12,16 +12,16 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/mangaImageID"
+            android:id="@+id/MangaCoverID"
             android:background="@android:color/background_dark"
             android:layout_width="90dp"
             android:layout_height="90dp" />
 
         <TextView
-            android:id="@+id/mangaTitleID"
+            android:id="@+id/MangaTitleID"
             android:paddingLeft="5dp"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@+id/mangaImageID"
+            android:layout_toRightOf="@+id/MangaCoverID"
             android:text="Manga title"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -29,21 +29,21 @@
             />
 
         <TextView
-            android:id="@+id/mangaScrapeDateID"
+            android:id="@+id/MangaScrapeDateID"
             android:paddingLeft="5dp"
-            android:layout_toRightOf="@+id/mangaImageID"
+            android:layout_toRightOf="@+id/MangaCoverID"
             android:text="Released"
-            android:layout_below="@id/mangaTitleID"
+            android:layout_below="@id/MangaTitleID"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
         <TextView
-            android:id="@+id/mangaCatID"
+            android:id="@+id/MangaTypeID"
             android:padding="5dp"
             android:text="Category"
-            android:layout_below ="@id/mangaScrapeDateID"
-            android:layout_toRightOf="@id/mangaImageID"
+            android:layout_below ="@id/MangaScrapeDateID"
+            android:layout_toRightOf="@id/MangaCoverID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

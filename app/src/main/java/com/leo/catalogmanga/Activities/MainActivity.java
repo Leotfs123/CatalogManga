@@ -31,7 +31,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private  RecyclerView recyclerView;
     private MangaRecyclerViewAdapter mangaRecyclerViewAdapter;
-    private List<Manga> MangaList;
+    private List <Manga> MangaList;
     private RequestQueue requestQueue;
 
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Prefs prefs=new Prefs(MainActivity.this);
         String search=prefs.getSearch();
         MangaList=getManga(search);
-        mangaRecyclerViewAdapter=new MangaRecyclerViewAdapter(this, MangaList);
+        mangaRecyclerViewAdapter=new MangaRecyclerViewAdapter(this,MangaList);
         recyclerView.setAdapter(mangaRecyclerViewAdapter);
     }
 

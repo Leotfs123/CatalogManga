@@ -1,7 +1,10 @@
 package com.leo.catalogmanga.Model;
 
-public class Manga
+import java.io.Serializable;
+
+public class Manga implements Serializable
 {
+
     private String MangaTitle;
     private String MangaCover;
     private String MangaShortUrl;
@@ -10,6 +13,10 @@ public class Manga
     private String id;
     private String type;
     private String ScrapeDate;
+
+    public Manga()
+    {
+    }
 
     public String getMangaTitle() {
         return MangaTitle;
@@ -51,21 +58,13 @@ public class Manga
         MangaSynopsis = mangaSynopsis;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getType() {return type;}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setType(String type) {this.type = type;}
 
-    public String getType() {
-        return type;
-    }
+    public String getId() {return id;}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    public void setId(String id) {this.id = id;}
 
     public String getScrapeDate() {
         return ScrapeDate;
