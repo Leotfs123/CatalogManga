@@ -40,10 +40,10 @@ public class DetailsActivity extends AppCompatActivity {
 
         manga = (Manga) getIntent().getSerializableExtra("manga");
         mangaID = manga.getId();
-        MangaTitleID_details=findViewById(R.id.MangaTitleID);
+        MangaTitleID_details=findViewById(R.id.MangaTitleID_details);
         MangaScrapeDateID_details=findViewById(R.id.MangaScrapeDateID);
         MangaTypeID_details=findViewById(R.id.MangaTypeID);
-        MangaCoverID_details=findViewById(R.id.MangaCoverID);
+        MangaCoverID_details=findViewById(R.id.MangaCoverID_details);
 
         getMangaDetails(mangaID);
 
@@ -55,8 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
     private void getMangaDetails(String id)
     {
         String myUrl="https://manga-scrapper.p.rapidapi.com/series/?provider=asura" + id;
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, myUrl, new Response.Listener<JSONObject>() {
-
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(myUrl, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Movie;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -56,21 +57,24 @@ public class MainActivity extends AppCompatActivity {
     public List<Manga> getManga (String searchTerm)
     {
         MangaList.clear();
-        String myUrl="https://manga-scrapper.p.rapidapi.com/?s=" + searchTerm + "r=json";
+        //String myUrl="https://manga-scrapper.p.rapidapi.com/?s=" + searchTerm + "r=json";
+        String myUrl="https://manga-scrapper.p.rapidapi.com/search/" + searchTerm + "/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(myUrl, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray mangaArray=response.getJSONArray("Search");
+                    JSONObject mangaObj=response.getJSONObject("data");
+                   // Log.d("TAG","message1= "+mangaObj.toString());
+                    JSONArray mangaArray=mangaObj.getJSONArray("result");
                     for (int i=0;i<mangaArray.length();i++)
                     {
-                        JSONObject mangaObj=mangaArray.getJSONObject(i);
+                        JSONObject mangaOb=mangaArray.getJSONObject(i);
                         Manga manga=new Manga();
-                        manga.setMangaTitle(mangaObj.getString("MangaTitle"));
-                        manga.setScrapeDate(mangaObj.getString("ScrapeDate"));
-                        manga.setMangaSynopsis(mangaObj.getString("MangaSynopsis"));
-                        manga.setMangaCover(mangaObj.getString("MangaCover"));
-                        manga.setType(mangaObj.getString("_type"));
+                        manga.setMangaTitle(mangaOb.getString("MangaTitle"));
+                        manga.setScrapeDate(mangaOb.getString("ScrapeDate"));
+                        manga.setMangaSynopsis(mangaOb.getString("MangaSynopsis"));
+                        manga.setMangaCover(mangaOb.getString("MangaCover"));
+                        manga.setType(mangaOb.getString("_type"));
                         MangaList.add(manga);
                     }
                     mangaRecyclerViewAdapter.notifyDataSetChanged();

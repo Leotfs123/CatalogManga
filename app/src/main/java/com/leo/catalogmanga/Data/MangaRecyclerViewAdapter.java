@@ -25,6 +25,15 @@ public class MangaRecyclerViewAdapter extends RecyclerView.Adapter<MangaRecycler
     private Context context;
     private List<Manga> mangaList;
 
+    //constructore de la classe
+    public MangaRecyclerViewAdapter(Context context, List<Manga> manga){
+        this.context = context;
+        mangaList = manga;
+    }
+
+
+
+
     @NonNull
     @Override
     public MangaRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
